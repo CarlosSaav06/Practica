@@ -38,5 +38,19 @@ class Program
                 break;
             }
         }
+
+        // Mostrando resultados
+        if (posicion != -1)
+        {
+            Console.WriteLine($"\nEl número {numeroBuscado} sí está en el arreglo.");
+            Console.WriteLine($"Está en la posición: {posicion}");
+        }
+        else
+        {
+            Console.WriteLine($"\nEl número {numeroBuscado} no aparece en el arreglo.");
+        }
+
+        Console.ReadKey();
     }
 }
+
