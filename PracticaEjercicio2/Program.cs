@@ -34,5 +34,55 @@ class Program
             Console.ReadKey();
             return;
         }
+
+        // Búsqueda binaria manual con impresión paso a paso
+        int low = 0;
+        int high = lista.Count - 1;
+        int encontradoIndice = -1;
+        int paso = 1;
+
+        while (low <= high)
+        {
+            int mid = (low + high) / 2;
+
+            // Mostrar estado actual
+            Console.WriteLine($"\nPaso {paso}: low={low}, high={high}, mid={mid}, valorEnMid={lista[mid]}");
+            Console.Write("Sublista actual: [");
+            for (int i = low; i <= high; i++)
+            {
+                Console.Write(lista[i] + (i < high ? ", " : ""));
+            }
+            Console.WriteLine("]");
+
+            // Comparar
+            if (lista[mid] == objetivo)
+            {
+                encontradoIndice = mid;
+                Console.WriteLine($"\n¡Encontrado! El número {objetivo} está en la posición (índice) {mid}.");
+                break;
+            }
+            else if (lista[mid] < objetivo)
+            {
+                Console.WriteLine($"{lista[mid]} < {objetivo} => Buscamos en la mitad derecha.");
+                low = mid + 1;
+            }
+            else // lista[mid] > objetivo
+            {
+                Console.WriteLine($"{lista[mid]} > {objetivo} => Buscamos en la mitad izquierda.");
+                high = mid - 1;
+            }
+
+            paso++;
+        }
+
+        if (encontradoIndice == -1)
+        {
+            Console.WriteLine($"\nEl número {objetivo} NO se encontró en la lista.");
+        }
+
+        // Si querés que devuelva la primera aparición en caso de duplicados, lo podemos ajustar.
+        Console.WriteLine("\nPresione una tecla para salir...");
+        Console.ReadKey();
     }
 }
+
